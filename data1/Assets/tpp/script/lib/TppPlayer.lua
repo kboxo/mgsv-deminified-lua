@@ -104,23 +104,23 @@ function this.ForceChangePlayerToSnake(basic)
 end
 --RETAILPATCH 1.0.11>
 function this.ForceChangePlayerFromOcelot()
-  if this.IsCurrentPlayerOcelot() or this.IsCurrentPlayerQuiet()then--RETAILPATCH 1.0.13 quiet
+  if this.IsCurrentPlayerOcelot()then
     if vars.sortiePrepPlayerType==PlayerType.SNAKE or vars.sortiePrepPlayerType==PlayerType.AVATAR then
       vars.playerPartsType=vars.sortiePrepPlayerSnakePartsType
       vars.playerCamoType=vars.sortiePrepPlayerSnakeCamoType
       vars.playerFaceEquipId=vars.sortiePrepPlayerSnakeFaceEquipId
       Player.SetItemLevel(TppEquip.EQP_SUIT,vars.sortiePrepPlayerSnakeSuitLevel)
-  elseif vars.sortiePrepPlayerType==PlayerType.DD_MALE or vars.sortiePrepPlayerType==PlayerType.DD_FEMALE then
-    vars.playerPartsType=vars.sortiePrepPlayerDDPartsType
-    vars.playerCamoType=vars.sortiePrepPlayerDDCamoType
-    vars.playerFaceEquipId=vars.sortiePrepPlayerDDFaceEquipId
-    Player.SetItemLevel(TppEquip.EQP_SUIT,vars.sortiePrepPlayerDDSuitLevel)
-  end
-  vars.playerStaffHeader=vars.sortiePrepPlayerStaffHeader
-  vars.playerStaffSeed=vars.sortiePrepPlayerStaffSeed
-  vars.playerType=vars.sortiePrepPlayerType
-  vars.playerFaceId=vars.sortiePrepPlayerFaceId
-  Player.ResetDirtyEffect()
+    elseif vars.sortiePrepPlayerType==PlayerType.DD_MALE or vars.sortiePrepPlayerType==PlayerType.DD_FEMALE then
+      vars.playerPartsType=vars.sortiePrepPlayerDDPartsType
+      vars.playerCamoType=vars.sortiePrepPlayerDDCamoType
+      vars.playerFaceEquipId=vars.sortiePrepPlayerDDFaceEquipId
+      Player.SetItemLevel(TppEquip.EQP_SUIT,vars.sortiePrepPlayerDDSuitLevel)
+    end
+    vars.playerStaffHeader=vars.sortiePrepPlayerStaffHeader
+    vars.playerStaffSeed=vars.sortiePrepPlayerStaffSeed
+    vars.playerType=vars.sortiePrepPlayerType
+    vars.playerFaceId=vars.sortiePrepPlayerFaceId
+    Player.ResetDirtyEffect()
   end
 end
 --<
@@ -997,25 +997,7 @@ function this.SetTargetDeadCamera(params)
 end
 function this._SetTargetDeadCamera()
   this.PrepareStartGameOverCamera()
-  Player.RequestToPlayCameraNonAnimation{
-    characterId=mvars.ply_gameOverCameraGameObjectId,
-    isFollowPos=false,
-    isFollowRot=true,
-    followTime=7,
-    followDelayTime=.1,
-    candidateRots={{10,0},{10,45},{10,90},{10,135},{10,180},{10,225},{10,270}},
-    skeletonNames={"SKL_004_HEAD","SKL_011_LUARM","SKL_021_RUARM","SKL_032_LFOOT","SKL_042_RFOOT"},
-    skeletonCenterOffsets={Vector3(0,0,0),Vector3(0,0,0),Vector3(0,0,0),Vector3(0,0,0),Vector3(0,0,0)},
-    skeletonBoundings={Vector3(0,.45,0),Vector3(0,0,0),Vector3(0,0,0),Vector3(0,-.3,0),Vector3(0,-.3,0)},
-    offsetPos=Vector3(.3,.2,-4.6),
-    focalLength=21,
-    aperture=1.875,
-    timeToSleep=10,
-    fitOnCamera=true,
-    timeToStartToFitCamera=.001,
-    fitCameraInterpTime=.24,
-    diffFocalLengthToReFitCamera=16
-  }
+  Player.RequestToPlayCameraNonAnimation{characterId=mvars.ply_gameOverCameraGameObjectId,isFollowPos=false,isFollowRot=true,followTime=7,followDelayTime=.1,candidateRots={{10,0},{10,45},{10,90},{10,135},{10,180},{10,225},{10,270}},skeletonNames={"SKL_004_HEAD","SKL_011_LUARM","SKL_021_RUARM","SKL_032_LFOOT","SKL_042_RFOOT"},skeletonCenterOffsets={Vector3(0,0,0),Vector3(0,0,0),Vector3(0,0,0),Vector3(0,0,0),Vector3(0,0,0)},skeletonBoundings={Vector3(0,.45,0),Vector3(0,0,0),Vector3(0,0,0),Vector3(0,-.3,0),Vector3(0,-.3,0)},offsetPos=Vector3(.3,.2,-4.6),focalLength=21,aperture=1.875,timeToSleep=10,fitOnCamera=true,timeToStartToFitCamera=.001,fitCameraInterpTime=.24,diffFocalLengthToReFitCamera=16}
 end
 function this.SetTargetHeliCamera(params)
   local gameObjectName
@@ -1034,25 +1016,7 @@ function this.SetTargetHeliCamera(params)
 end
 function this._SetTargetHeliCamera()
   this.PrepareStartGameOverCamera()
-  Player.RequestToPlayCameraNonAnimation{
-    characterId=mvars.ply_gameOverCameraGameObjectId,
-    isFollowPos=false,
-    isFollowRot=true,
-    followTime=7,
-    followDelayTime=.1,
-    candidateRots={{10,0}},
-    skeletonNames={"SKL_011_RLWDOOR"},
-    skeletonCenterOffsets={Vector3(0,0,0)},
-    skeletonBoundings={Vector3(0,.45,0)},
-    offsetPos=Vector3(.3,.2,-4.6),
-    focalLength=21,
-    aperture=1.875,
-    timeToSleep=10,
-    fitOnCamera=true,
-    timeToStartToFitCamera=.01,
-    fitCameraInterpTime=.24,
-    diffFocalLengthToReFitCamera=999999
-  }
+  Player.RequestToPlayCameraNonAnimation{characterId=mvars.ply_gameOverCameraGameObjectId,isFollowPos=false,isFollowRot=true,followTime=7,followDelayTime=.1,candidateRots={{10,0}},skeletonNames={"SKL_011_RLWDOOR"},skeletonCenterOffsets={Vector3(0,0,0)},skeletonBoundings={Vector3(0,.45,0)},offsetPos=Vector3(.3,.2,-4.6),focalLength=21,aperture=1.875,timeToSleep=10,fitOnCamera=true,timeToStartToFitCamera=.01,fitCameraInterpTime=.24,diffFocalLengthToReFitCamera=999999}
 end
 function this.SetTargetTruckCamera(params)
   local gameObjectName
@@ -1071,25 +1035,7 @@ function this.SetTargetTruckCamera(params)
 end
 function this._SetTargetTruckCamera(a)
   this.PrepareStartGameOverCamera()
-  Player.RequestToPlayCameraNonAnimation{
-    characterId=mvars.ply_gameOverCameraGameObjectId,
-    isFollowPos=false,
-    isFollowRot=true,
-    followTime=7,
-    followDelayTime=.1,
-    candidateRots={{10,0},{10,45},{10,90},{10,135},{10,180},{10,225},{10,270}},
-    skeletonNames={"SKL_005_WIPERC"},
-    skeletonCenterOffsets={Vector3(0,-.75,-2)},
-    skeletonBoundings={Vector3(1.5,2,4)},
-    offsetPos=Vector3(2.5,3,7.5),
-    focalLength=21,
-    aperture=1.875,
-    timeToSleep=10,
-    fitOnCamera=true,
-    timeToStartToFitCamera=.01,
-    fitCameraInterpTime=.24,
-    diffFocalLengthToReFitCamera=999999
-  }
+  Player.RequestToPlayCameraNonAnimation{characterId=mvars.ply_gameOverCameraGameObjectId,isFollowPos=false,isFollowRot=true,followTime=7,followDelayTime=.1,candidateRots={{10,0},{10,45},{10,90},{10,135},{10,180},{10,225},{10,270}},skeletonNames={"SKL_005_WIPERC"},skeletonCenterOffsets={Vector3(0,-.75,-2)},skeletonBoundings={Vector3(1.5,2,4)},offsetPos=Vector3(2.5,3,7.5),focalLength=21,aperture=1.875,timeToSleep=10,fitOnCamera=true,timeToStartToFitCamera=.01,fitCameraInterpTime=.24,diffFocalLengthToReFitCamera=999999}
 end
 function this.SetPlayerKilledChildCamera()
   if mvars.mis_childGameObjectIdKilledPlayer then
@@ -1106,25 +1052,7 @@ function this.SetPressStartCamera()
     return
   end
   Player.RequestToStopCameraAnimation{}
-  Player.RequestToPlayCameraNonAnimation{
-    characterId=playerId,
-    isFollowPos=true,
-    isFollowRot=true,
-    followTime=0,
-    followDelayTime=0,
-    candidateRots={{0,185}},
-    skeletonNames={"SKL_004_HEAD"},
-    skeletonCenterOffsets={Vector3(-.5,-.15,0)},
-    skeletonBoundings={Vector3(.5,.45,.1)},
-    offsetPos=Vector3(-.8,0,-1.4),
-    focalLength=21,
-    aperture=1.875,
-    timeToSleep=0,
-    fitOnCamera=false,
-    timeToStartToFitCamera=0,
-    fitCameraInterpTime=0,
-    diffFocalLengthToReFitCamera=0
-  }
+  Player.RequestToPlayCameraNonAnimation{characterId=playerId,isFollowPos=true,isFollowRot=true,followTime=0,followDelayTime=0,candidateRots={{0,185}},skeletonNames={"SKL_004_HEAD"},skeletonCenterOffsets={Vector3(-.5,-.15,0)},skeletonBoundings={Vector3(.5,.45,.1)},offsetPos=Vector3(-.8,0,-1.4),focalLength=21,aperture=1.875,timeToSleep=0,fitOnCamera=false,timeToStartToFitCamera=0,fitCameraInterpTime=0,diffFocalLengthToReFitCamera=0}
 end
 function this.SetTitleCamera()
   local playerId=GetGameObjectId"Player"
@@ -1132,25 +1060,7 @@ function this.SetTitleCamera()
     return
   end
   Player.RequestToStopCameraAnimation{}
-  Player.RequestToPlayCameraNonAnimation{
-    characterId=playerId,
-    isFollowPos=true,
-    isFollowRot=true,
-    followTime=0,
-    followDelayTime=0,
-    candidateRots={{0,185}},
-    skeletonNames={"SKL_004_HEAD"},
-    skeletonCenterOffsets={Vector3(-.5,-.15,.1)},
-    skeletonBoundings={Vector3(.5,.45,.9)},
-    offsetPos=Vector3(-.8,0,-1.8),
-    focalLength=21,
-    aperture=1.875,
-    timeToSleep=0,
-    fitOnCamera=false,
-    timeToStartToFitCamera=0,
-    fitCameraInterpTime=0,
-    diffFocalLengthToReFitCamera=0
-  }
+  Player.RequestToPlayCameraNonAnimation{characterId=playerId,isFollowPos=true,isFollowRot=true,followTime=0,followDelayTime=0,candidateRots={{0,185}},skeletonNames={"SKL_004_HEAD"},skeletonCenterOffsets={Vector3(-.5,-.15,.1)},skeletonBoundings={Vector3(.5,.45,.9)},offsetPos=Vector3(-.8,0,-1.8),focalLength=21,aperture=1.875,timeToSleep=0,fitOnCamera=false,timeToStartToFitCamera=0,fitCameraInterpTime=0,diffFocalLengthToReFitCamera=0}
 end
 function this.SetSearchTarget(targetGameObjectName,gameObjectType,name,skeletonName,offset,targetFox2Name,doDirectionCheck,wideCheckRange)
   if(targetGameObjectName==nil or gameObjectType==nil)then
@@ -1236,7 +1146,7 @@ end
 function this.RequestMissionClearMotion()
   Player.RequestToPlayDirectMotion{"missionClearMotion",{"/Assets/tpp/motion/SI_game/fani/bodies/snap/snapnon/snapnon_f_idl7.gani",false,"","","",false}}
 end
-function this.PlayMissionClearCameraOnFoot(step,unk2)
+function this.PlayMissionClearCameraOnFoot(unk1,unk2)
   if PlayerInfo.AndCheckStatus{PlayerStatus.NORMAL_ACTION}then
     if PlayerInfo.OrCheckStatus{PlayerStatus.STAND,PlayerStatus.SQUAT}then
       if PlayerInfo.AndCheckStatus{PlayerStatus.CARRY}then
@@ -1256,7 +1166,7 @@ function this.PlayMissionClearCameraOnFoot(step,unk2)
   local callSeOfCameraInterp=false
   local timeToSleep=20
   local useLastSelectedIndex=false
-  if step==1 then
+  if unk1==1 then
     skeletonNames={"SKL_004_HEAD","SKL_002_CHEST"}
     skeletonCenterOffsets={Vector3(0,0,.05),Vector3(.15,0,0)}
     skeletonBoundings={Vector3(.1,.125,.1),Vector3(.15,.1,.05)}
@@ -1303,26 +1213,25 @@ function this.PlayMissionClearCameraOnFoot(step,unk2)
   }
   return unkl6
 end
-function this.PlayMissionClearCameraOnRideHorse(vehicleId,step,unk6)
+function this.PlayMissionClearCameraOnRideHorse(unk1,unk2,unk3)
   local skeletonNames={"SKL_004_HEAD","SKL_002_CHEST"}
   local skeletonCenterOffsets={Vector3(0,0,.05),Vector3(.15,0,0)}
   local skeletonBoundings={Vector3(.1,.125,.1),Vector3(.15,.1,.05)}
   local offsetPos=Vector3(0,0,-3.2)
   local interpTimeAtStart=.2
-  local unkRet
+  local o
   local callSeOfCameraInterp=false
   local timeToSleep=20
   local useLastSelectedIndex=false
-  if unk6 then
+  if unk3 then
     timeToSleep=4
   end
-  if step==1 then
+  if unk2==1 then
     skeletonNames={"SKL_004_HEAD","SKL_002_CHEST"}
     skeletonCenterOffsets={Vector3(0,-.125,.05),Vector3(.15,-.125,0)}
     skeletonBoundings={Vector3(.1,.125,.1),Vector3(.15,.1,.05)}
-    offsetPos=Vector3(0,0,-3.2)
-    interpTimeAtStart=.2
-    unkRet=1
+    offsetPos=Vector3(0,0,-3.2)interpTimeAtStart=.2
+    o=1
     callSeOfCameraInterp=true
   else
     skeletonNames={"SKL_004_HEAD","SKL_031_LLEG","SKL_041_RLEG"}
@@ -1363,24 +1272,24 @@ function this.PlayMissionClearCameraOnRideHorse(vehicleId,step,unk6)
     callSeOfCameraInterp=callSeOfCameraInterp,
     useLastSelectedIndex=useLastSelectedIndex
   }
-  return unkRet
+  return o
 end
-function this.PlayMissionClearCameraOnRideLightVehicle(vehicleId,step,unk3)
+function this.PlayMissionClearCameraOnRideLightVehicle(unk1,unk2,unk3)
   local offsetTarget=Vector3(-.35,.6,.7)
   local offsetPos=Vector3(0,0,-2.25)
   local interpTimeAtStart=.2
-  local unkRet
+  local r
   local callSeOfCameraInterp=false
   local timeToSleep=20
   local useLastSelectedIndex=false
   if unk3 then
     timeToSleep=4
   end
-  if step==1 then
+  if unk2==1 then
     offsetTarget=Vector3(-.35,.6,.7)
     offsetPos=Vector3(0,0,-2.25)
     interpTimeAtStart=.2
-    unkRet=.5
+    r=.5
     callSeOfCameraInterp=true
   else
     offsetTarget=Vector3(-.35,.4,.7)
@@ -1388,44 +1297,25 @@ function this.PlayMissionClearCameraOnRideLightVehicle(vehicleId,step,unk3)
     interpTimeAtStart=.75
     useLastSelectedIndex=true
   end
-  Player.RequestToPlayCameraNonAnimation{
-    characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",0),
-    isFollowPos=true,
-    isFollowRot=true,
-    followTime=5,
-    followDelayTime=0,
-    candidateRots={{3,160},{3,-160}},
-    offsetTarget=offsetTarget,
-    offsetPos=offsetPos,
-    focalLength=28,
-    aperture=1.875,
-    timeToSleep=timeToSleep,
-    interpTimeAtStart=interpTimeAtStart,
-    fitOnCamera=false,
-    timeToStartToFitCamera=1,
-    fitCameraInterpTime=.3,
-    diffFocalLengthToReFitCamera=16,
-    callSeOfCameraInterp=callSeOfCameraInterp,
-    useLastSelectedIndex=useLastSelectedIndex
-  }
-  return unkRet
+  Player.RequestToPlayCameraNonAnimation{characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",0),isFollowPos=true,isFollowRot=true,followTime=5,followDelayTime=0,candidateRots={{3,160},{3,-160}},offsetTarget=offsetTarget,offsetPos=offsetPos,focalLength=28,aperture=1.875,timeToSleep=timeToSleep,interpTimeAtStart=interpTimeAtStart,fitOnCamera=false,timeToStartToFitCamera=1,fitCameraInterpTime=.3,diffFocalLengthToReFitCamera=16,callSeOfCameraInterp=callSeOfCameraInterp,useLastSelectedIndex=useLastSelectedIndex}
+  return r
 end
-function this.PlayMissionClearCameraOnRideTruck(vehicleId,step,unk6)
+function this.PlayMissionClearCameraOnRideTruck(unk1,unk1,unk3)
   local offsetTarget=Vector3(-.35,1.3,1)
   local offsetPos=Vector3(0,0,-2)
   local interpTimeAtStart=.2
-  local unkRet
+  local n
   local callSeOfCameraInterp=false
   local timeToSleep=20
   local useLastSelectedIndex=false
-  if unk6 then
+  if unk3 then
     timeToSleep=4
   end
-  if step==1 then
+  if unk1==1 then
     offsetTarget=Vector3(-.35,1.3,1)
     offsetPos=Vector3(0,0,-3)
     interpTimeAtStart=.2
-    unkRet=.5
+    n=.5
     callSeOfCameraInterp=true
   else
     offsetTarget=Vector3(-.35,1,1)
@@ -1433,29 +1323,10 @@ function this.PlayMissionClearCameraOnRideTruck(vehicleId,step,unk6)
     interpTimeAtStart=.75
     useLastSelectedIndex=true
   end
-  Player.RequestToPlayCameraNonAnimation{
-    characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",0),
-    isFollowPos=true,
-    isFollowRot=true,
-    followTime=5,
-    followDelayTime=0,
-    candidateRots={{3,160},{3,-160}},
-    offsetTarget=offsetTarget,
-    offsetPos=offsetPos,
-    focalLength=28,
-    aperture=1.875,
-    timeToSleep=timeToSleep,
-    interpTimeAtStart=interpTimeAtStart,
-    fitOnCamera=false,
-    timeToStartToFitCamera=1,
-    fitCameraInterpTime=.3,
-    diffFocalLengthToReFitCamera=16,
-    callSeOfCameraInterp=callSeOfCameraInterp,
-    useLastSelectedIndex=useLastSelectedIndex
-  }
-  return unkRet
+  Player.RequestToPlayCameraNonAnimation{characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",0),isFollowPos=true,isFollowRot=true,followTime=5,followDelayTime=0,candidateRots={{3,160},{3,-160}},offsetTarget=offsetTarget,offsetPos=offsetPos,focalLength=28,aperture=1.875,timeToSleep=timeToSleep,interpTimeAtStart=interpTimeAtStart,fitOnCamera=false,timeToStartToFitCamera=1,fitCameraInterpTime=.3,diffFocalLengthToReFitCamera=16,callSeOfCameraInterp=callSeOfCameraInterp,useLastSelectedIndex=useLastSelectedIndex}
+  return n
 end
-function this.PlayMissionClearCameraOnRideCommonArmoredVehicle(unkId,step,unk3,RENisQuest)
+function this.PlayMissionClearCameraOnRideCommonArmoredVehicle(unk1,unk2,unk3,RENisQuest)
   local offsetTarget=Vector3(.05,-.5,-2.2)
   if unk3==1 then
     offsetTarget=Vector3(.05,-.5,-2.2)
@@ -1464,139 +1335,84 @@ function this.PlayMissionClearCameraOnRideCommonArmoredVehicle(unkId,step,unk3,R
   end
   local offsetPos=Vector3(0,0,-7.5)
   local interpTimeAtStart=.2
-  local unkRet
+  local r
   local callSeOfCameraInterp=false
   local timeToSleep=20
   local useLastSelectedIndex=false
   if RENisQuest then
     timeToSleep=4
   end
-  if step==1 then
+  if unk2==1 then
     offsetPos=Vector3(0,0,-7.5)
     interpTimeAtStart=.2
-    unkRet=.5
+    r=.5
     callSeOfCameraInterp=true
   else
     offsetPos=Vector3(0,0,-13.25)
     interpTimeAtStart=.75
     useLastSelectedIndex=true
   end
-  Player.RequestToPlayCameraNonAnimation{
-    characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",0),
-    isFollowPos=true,
-    isFollowRot=true,
-    followTime=5,
-    followDelayTime=0,
-    candidateRots={{8,165},{8,-165}},
-    offsetTarget=offsetTarget,
-    offsetPos=offsetPos,
-    focalLength=28,
-    aperture=1.875,
-    timeToSleep=timeToSleep,
-    interpTimeAtStart=interpTimeAtStart,
-    fitOnCamera=false,
-    timeToStartToFitCamera=1,
-    fitCameraInterpTime=.3,
-    diffFocalLengthToReFitCamera=16,
-    callSeOfCameraInterp=callSeOfCameraInterp,
-    useLastSelectedIndex=useLastSelectedIndex
-  }
-  return unkRet
+  Player.RequestToPlayCameraNonAnimation{characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",0),isFollowPos=true,isFollowRot=true,followTime=5,followDelayTime=0,candidateRots={{8,165},{8,-165}},offsetTarget=offsetTarget,offsetPos=offsetPos,focalLength=28,aperture=1.875,timeToSleep=timeToSleep,interpTimeAtStart=interpTimeAtStart,fitOnCamera=false,timeToStartToFitCamera=1,fitCameraInterpTime=.3,diffFocalLengthToReFitCamera=16,callSeOfCameraInterp=callSeOfCameraInterp,useLastSelectedIndex=useLastSelectedIndex}
+  return r
 end
-function this.PlayMissionClearCameraOnRideEasternArmoredVehicle(vehicleId,step,unkP3)
-  local unkRet
-  unkRet=this.PlayMissionClearCameraOnRideCommonArmoredVehicle(vehicleId,step,1,unkP3)
-  return unkRet
+function this.PlayMissionClearCameraOnRideEasternArmoredVehicle(t,n,r)
+  local a
+  a=this.PlayMissionClearCameraOnRideCommonArmoredVehicle(t,n,1,r)
+  return a
 end
-function this.PlayMissionClearCameraOnRideWesternArmoredVehicle(vehicleId,step)
-  local unkRet
-  unkRet=this.PlayMissionClearCameraOnRideCommonArmoredVehicle(vehicleId,step,2,isQuest)--RETAILBUG:
-  return unkRet
+function this.PlayMissionClearCameraOnRideWesternArmoredVehicle(t,n)
+  local a
+  a=this.PlayMissionClearCameraOnRideCommonArmoredVehicle(t,n,2,isQuest)--RETAILBUG:
+  return a
 end
-function this.PlayMissionClearCameraOnRideTank(vehicleId,step,unk6)
+function this.PlayMissionClearCameraOnRideTank(e,l,i)
   local offsetPos=Vector3(0,0,-6.5)
-  local interpTimeAtStart=.2
-  local unkRet
+  local a=.2
+  local n
   local callSeOfCameraInterp=false
-  local timeToSleep=20
+  local o=20
   local useLastSelectedIndex=false
-  if unk6 then
-    timeToSleep=4
+  if i then
+    o=4
   end
-  if step==1 then
+  if l==1 then
     offsetPos=Vector3(0,0,-6.5)
-    interpTimeAtStart=.2
-    unkRet=.5
+    a=.2
+    n=.5
     callSeOfCameraInterp=true
   else
     offsetPos=Vector3(0,0,-9)
-    interpTimeAtStart=.75
+    a=.75
     useLastSelectedIndex=true
   end
-  Player.RequestToPlayCameraNonAnimation{
-    characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",0),
-    isFollowPos=true,
-    isFollowRot=true,
-    followTime=5,
-    followDelayTime=0,
-    candidateRots={{9,165},{9,-165}},
-    offsetTarget=Vector3(0,-.85,3.25),
-    offsetPos=offsetPos,
-    focalLength=28,
-    aperture=1.875,
-    timeToSleep=timeToSleep,
-    interpTimeAtStart=interpTimeAtStart,
-    fitOnCamera=false,
-    timeToStartToFitCamera=1,
-    fitCameraInterpTime=.3,
-    diffFocalLengthToReFitCamera=16,
-    callSeOfCameraInterp=callSeOfCameraInterp,
-    useLastSelectedIndex=useLastSelectedIndex}
-  return unkRet
+  Player.RequestToPlayCameraNonAnimation{characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",0),isFollowPos=true,isFollowRot=true,followTime=5,followDelayTime=0,candidateRots={{9,165},{9,-165}},offsetTarget=Vector3(0,-.85,3.25),offsetPos=offsetPos,focalLength=28,aperture=1.875,timeToSleep=o,interpTimeAtStart=a,fitOnCamera=false,timeToStartToFitCamera=1,fitCameraInterpTime=.3,diffFocalLengthToReFitCamera=16,callSeOfCameraInterp=callSeOfCameraInterp,useLastSelectedIndex=useLastSelectedIndex}
+  return n
 end
-function this.PlayMissionClearCameraOnWalkerGear(vehicleId,step,unk6)
-  local offsetTarget=Vector3(0,.55,.35)
-  local offsetPos=Vector3(0,0,-3.65)
+function this.PlayMissionClearCameraOnWalkerGear(a,p,s)
+  local n=Vector3(0,.55,.35)
+  local a=Vector3(0,0,-3.65)
   local interpTimeAtStart=.2
-  local unkRet
+  local l
   local callSeOfCameraInterp=false
   local timeToSleep=20
   local useLastSelectedIndex=false
-  if unk6 then
+  if s then
     timeToSleep=4
   end
-  if step==1 then
-    offsetTarget=Vector3(0,.55,.35)
-    offsetPos=Vector3(0,0,-3.65)
+  if p==1 then
+    n=Vector3(0,.55,.35)
+    a=Vector3(0,0,-3.65)
     interpTimeAtStart=.2
-    unkRet=1
+    l=1
     callSeOfCameraInterp=true
   else
-    offsetTarget=Vector3(0,.4,.35)
-    offsetPos=Vector3(0,0,-4.95)
+    n=Vector3(0,.4,.35)
+    a=Vector3(0,0,-4.95)
     interpTimeAtStart=3
     useLastSelectedIndex=true
   end
-  Player.RequestToPlayCameraNonAnimation{
-    characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",0),
-    isFollowPos=true,
-    isFollowRot=true,
-    followTime=3,
-    followDelayTime=.1,
-    candidateRots={{7,165},{7,-165}},
-    offsetTarget=offsetTarget,
-    offsetPos=offsetPos,
-    focalLength=28,
-    aperture=1.875,
-    timeToSleep=timeToSleep,
-    interpTimeAtStart=interpTimeAtStart,
-    fitOnCamera=false,
-    timeToStartToFitCamera=1,
-    fitCameraInterpTime=.3,
-    diffFocalLengthToReFitCamera=16,
-    callSeOfCameraInterp=callSeOfCameraInterp,
-    useLastSelectedIndex=useLastSelectedIndex}
-  return unkRet
+  Player.RequestToPlayCameraNonAnimation{characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",0),isFollowPos=true,isFollowRot=true,followTime=3,followDelayTime=.1,candidateRots={{7,165},{7,-165}},offsetTarget=n,offsetPos=a,focalLength=28,aperture=1.875,timeToSleep=timeToSleep,interpTimeAtStart=interpTimeAtStart,fitOnCamera=false,timeToStartToFitCamera=1,fitCameraInterpTime=.3,diffFocalLengthToReFitCamera=16,callSeOfCameraInterp=callSeOfCameraInterp,useLastSelectedIndex=useLastSelectedIndex}
+  return l
 end
 this.VEHICLE_MISSION_CLEAR_CAMERA={
   [Vehicle.type.EASTERN_LIGHT_VEHICLE]=this.PlayMissionClearCameraOnRideLightVehicle,
@@ -1609,8 +1425,8 @@ this.VEHICLE_MISSION_CLEAR_CAMERA={
   [Vehicle.type.WESTERN_WHEELED_ARMORED_VEHICLE]=this.PlayMissionClearCameraOnRideWesternArmoredVehicle
 }
 function this.FOBPlayMissionClearCamera()
-  local missionClear=this.SetPlayerStatusForMissionEndCamera()
-  if not missionClear then--NMC missionClear always true
+  local e=this.SetPlayerStatusForMissionEndCamera()
+  if not e then
     return
   end
   TimerStart("Timer_FOBStartPlayMissionClearCameraStep1",.25)
@@ -1664,31 +1480,7 @@ function this.FOBPlayMissionClearCameraOnFoot(camMode)
     offsetPos=Vector3(0,0,-1.5)
     interpTimeAtStart=3
   end
-  --RETAILPATCH 1.0.13>
-  if vars.playerType==PlayerType.QUIET then
-    offsetPos=Vector3(0,.8,-1.25)
-  end
-  --<
-  Player.RequestToPlayCameraNonAnimation{
-    characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",0),
-    isFollowPos=true,
-    isFollowRot=true,
-    followTime=4,
-    followDelayTime=.1,
-    candidateRots={{-10,170},{-10,-170}},
-    skeletonNames=skeletonNames,
-    skeletonCenterOffsets=skeletonCenterOffsets,
-    skeletonBoundings=skeletonBoundings,
-    offsetPos=offsetPos,
-    focalLength=28,
-    aperture=1.875,
-    timeToSleep=20,
-    interpTimeAtStart=interpTimeAtStart,
-    fitOnCamera=false,
-    timeToStartToFitCamera=1,
-    fitCameraInterpTime=.3,
-    diffFocalLengthToReFitCamera=16,
-    callSeOfCameraInterp=callSeOfCameraInterp}
+  Player.RequestToPlayCameraNonAnimation{characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",0),isFollowPos=true,isFollowRot=true,followTime=4,followDelayTime=.1,candidateRots={{-10,170},{-10,-170}},skeletonNames=skeletonNames,skeletonCenterOffsets=skeletonCenterOffsets,skeletonBoundings=skeletonBoundings,offsetPos=offsetPos,focalLength=28,aperture=1.875,timeToSleep=20,interpTimeAtStart=interpTimeAtStart,fitOnCamera=false,timeToStartToFitCamera=1,fitCameraInterpTime=.3,diffFocalLengthToReFitCamera=16,callSeOfCameraInterp=callSeOfCameraInterp}
   return delay
 end
 function this.PlayMissionAbortCamera()
@@ -1703,156 +1495,38 @@ function this._PlayMissionAbortCamera()
   this.PlayCommonMissionEndCamera(this.PlayMissionAbortCameraOnRideHorse,this.VEHICLE_MISSION_ABORT_CAMERA,this.PlayMissionAbortCameraOnWalkerGear,this.PlayMissionAbortCameraOnFoot)
 end
 function this.PlayMissionAbortCameraOnFoot()
-  Player.RequestToPlayCameraNonAnimation{
-    characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",0),
-    isFollowPos=true,
-    isFollowRot=true,
-    followTime=4,
-    followDelayTime=.1,
-    candidateRots={{6,10},{6,-10}},
-    skeletonNames={"SKL_004_HEAD","SKL_031_LLEG","SKL_041_RLEG"},
-    skeletonCenterOffsets={Vector3(0,.2,0),Vector3(-.15,0,0),Vector3(-.15,0,0)},
-    skeletonBoundings={Vector3(.1,.125,.1),Vector3(.15,.1,.05),Vector3(.15,.1,.05)},
-    offsetPos=Vector3(0,0,-3),
-    focalLength=28,
-    aperture=1.875,
-    timeToSleep=20,
-    interpTimeAtStart=.5,
-    fitOnCamera=false,
-    timeToStartToFitCamera=1,
-    fitCameraInterpTime=.3,
-    diffFocalLengthToReFitCamera=16
-  }
+  Player.RequestToPlayCameraNonAnimation{characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",0),isFollowPos=true,isFollowRot=true,followTime=4,followDelayTime=.1,candidateRots={{6,10},{6,-10}},skeletonNames={"SKL_004_HEAD","SKL_031_LLEG","SKL_041_RLEG"},skeletonCenterOffsets={Vector3(0,.2,0),Vector3(-.15,0,0),Vector3(-.15,0,0)},skeletonBoundings={Vector3(.1,.125,.1),Vector3(.15,.1,.05),Vector3(.15,.1,.05)},offsetPos=Vector3(0,0,-3),focalLength=28,aperture=1.875,timeToSleep=20,interpTimeAtStart=.5,fitOnCamera=false,timeToStartToFitCamera=1,fitCameraInterpTime=.3,diffFocalLengthToReFitCamera=16}
 end
-function this.PlayMissionAbortCameraOnRideHorse(vehicleId)
-  Player.RequestToPlayCameraNonAnimation{
-    characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",0),
-    isFollowPos=true,
-    isFollowRot=true,
-    followTime=4,
-    followDelayTime=.1,
-    candidateRots={{6,20},{6,-20}},
-    skeletonNames={"SKL_004_HEAD","SKL_031_LLEG","SKL_041_RLEG"},
-    skeletonCenterOffsets={Vector3(0,.2,0),Vector3(-.15,0,0),Vector3(-.15,0,0)},
-    skeletonBoundings={Vector3(.1,.125,.1),Vector3(.15,.1,.05),Vector3(.15,.1,.05)},
-    offsetPos=Vector3(0,0,-3),
-    focalLength=28,
-    aperture=1.875,
-    timeToSleep=20,
-    interpTimeAtStart=.5,
-    fitOnCamera=false,
-    timeToStartToFitCamera=1,
-    fitCameraInterpTime=.3,
-    diffFocalLengthToReFitCamera=16}
+function this.PlayMissionAbortCameraOnRideHorse(e)
+  Player.RequestToPlayCameraNonAnimation{characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",0),isFollowPos=true,isFollowRot=true,followTime=4,followDelayTime=.1,candidateRots={{6,20},{6,-20}},skeletonNames={"SKL_004_HEAD","SKL_031_LLEG","SKL_041_RLEG"},skeletonCenterOffsets={Vector3(0,.2,0),Vector3(-.15,0,0),Vector3(-.15,0,0)},skeletonBoundings={Vector3(.1,.125,.1),Vector3(.15,.1,.05),Vector3(.15,.1,.05)},offsetPos=Vector3(0,0,-3),focalLength=28,aperture=1.875,timeToSleep=20,interpTimeAtStart=.5,fitOnCamera=false,timeToStartToFitCamera=1,fitCameraInterpTime=.3,diffFocalLengthToReFitCamera=16}
 end
-function this.PlayMissionAbortCameraOnRideLightVehicle(vehicleId)
-  Player.RequestToPlayCameraNonAnimation{
-    characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",0),
-    isFollowPos=true,
-    isFollowRot=true,
-    followTime=3,
-    followDelayTime=.1,
-    candidateRots={{10,30},{10,-30}},
-    offsetTarget=Vector3(-.35,.3,0),
-    offsetPos=Vector3(0,0,-4),
-    focalLength=28,
-    aperture=1.875,
-    timeToSleep=20,
-    interpTimeAtStart=.5,
-    fitOnCamera=false,
-    timeToStartToFitCamera=1,
-    fitCameraInterpTime=.3,
-    diffFocalLengthToReFitCamera=16}
+function this.PlayMissionAbortCameraOnRideLightVehicle(e)
+  Player.RequestToPlayCameraNonAnimation{characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",0),isFollowPos=true,isFollowRot=true,followTime=3,followDelayTime=.1,candidateRots={{10,30},{10,-30}},offsetTarget=Vector3(-.35,.3,0),offsetPos=Vector3(0,0,-4),focalLength=28,aperture=1.875,timeToSleep=20,interpTimeAtStart=.5,fitOnCamera=false,timeToStartToFitCamera=1,fitCameraInterpTime=.3,diffFocalLengthToReFitCamera=16}
 end
-function this.PlayMissionAbortCameraOnRideTruck(vehicleId)
-  Player.RequestToPlayCameraNonAnimation{
-    characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",0),
-    isFollowPos=true,
-    isFollowRot=true,
-    followTime=3,
-    followDelayTime=.1,
-    candidateRots={{8,75},{8,-55}},
-    offsetTarget=Vector3(-.35,1,1),
-    offsetPos=Vector3(0,0,-5),
-    focalLength=35,
-    aperture=1.875,
-    timeToSleep=20,
-    interpTimeAtStart=.5,
-    fitOnCamera=false,
-    timeToStartToFitCamera=1,
-    fitCameraInterpTime=.3,
-    diffFocalLengthToReFitCamera=16}
+function this.PlayMissionAbortCameraOnRideTruck(e)
+  Player.RequestToPlayCameraNonAnimation{characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",0),isFollowPos=true,isFollowRot=true,followTime=3,followDelayTime=.1,candidateRots={{8,75},{8,-55}},offsetTarget=Vector3(-.35,1,1),offsetPos=Vector3(0,0,-5),focalLength=35,aperture=1.875,timeToSleep=20,interpTimeAtStart=.5,fitOnCamera=false,timeToStartToFitCamera=1,fitCameraInterpTime=.3,diffFocalLengthToReFitCamera=16}
 end
-function this.PlayMissionAbortCameraOnRideCommonArmoredVehicle(vehicleId,step)
-  local offsetTarget=Vector3(.05,-.5,-2.2)
-  if step==1 then
-    offsetTarget=Vector3(.05,-.5,-2.2)
+function this.PlayMissionAbortCameraOnRideCommonArmoredVehicle(e,a)
+  local e=Vector3(.05,-.5,-2.2)
+  if a==1 then
+    e=Vector3(.05,-.5,-2.2)
   else
-    offsetTarget=Vector3(-.65,-1,0)
+    e=Vector3(-.65,-1,0)
   end
-  Player.RequestToPlayCameraNonAnimation{
-    characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",0),
-    isFollowPos=true,
-    isFollowRot=true,
-    followTime=3,
-    followDelayTime=.1,
-    candidateRots={{8,30},{8,-30}},
-    offsetTarget=offsetTarget,
-    offsetPos=Vector3(0,0,-9),
-    focalLength=35,
-    aperture=1.875,
-    timeToSleep=20,
-    interpTimeAtStart=.5,
-    fitOnCamera=false,
-    timeToStartToFitCamera=1,
-    fitCameraInterpTime=.3,
-    diffFocalLengthToReFitCamera=16
-  }
+  Player.RequestToPlayCameraNonAnimation{characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",0),isFollowPos=true,isFollowRot=true,followTime=3,followDelayTime=.1,candidateRots={{8,30},{8,-30}},offsetTarget=e,offsetPos=Vector3(0,0,-9),focalLength=35,aperture=1.875,timeToSleep=20,interpTimeAtStart=.5,fitOnCamera=false,timeToStartToFitCamera=1,fitCameraInterpTime=.3,diffFocalLengthToReFitCamera=16}
 end
-function this.PlayMissionAbortCameraOnRideEasternArmoredVehicle(vehicleId)
-  this.PlayMissionAbortCameraOnRideCommonArmoredVehicle(vehicleId,1)
+function this.PlayMissionAbortCameraOnRideEasternArmoredVehicle(a)
+  this.PlayMissionAbortCameraOnRideCommonArmoredVehicle(a,1)
 end
-function this.PlayMissionAbortCameraOnRideWesternArmoredVehicle(vehicleId)
-  this.PlayMissionAbortCameraOnRideCommonArmoredVehicle(vehicleId,2)
+function this.PlayMissionAbortCameraOnRideWesternArmoredVehicle(a)
+  this.PlayMissionAbortCameraOnRideCommonArmoredVehicle(a,2)
 end
-function this.PlayMissionAbortCameraOnRideTank(vehicleId)
-  local offsetTarget=Vector3(0,-.5,0)
-  Player.RequestToPlayCameraNonAnimation{
-    characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",0),
-    isFollowPos=true,
-    isFollowRot=true,
-    followTime=3,
-    followDelayTime=.1,
-    candidateRots={{8,25},{8,-25}},
-    offsetTarget=offsetTarget,
-    offsetPos=Vector3(0,0,-10),
-    focalLength=35,
-    aperture=1.875,
-    timeToSleep=20,
-    interpTimeAtStart=.5,
-    fitOnCamera=false,
-    timeToStartToFitCamera=1,
-    fitCameraInterpTime=.3,
-    diffFocalLengthToReFitCamera=16}
+function this.PlayMissionAbortCameraOnRideTank(e)
+  local e=Vector3(0,-.5,0)
+  Player.RequestToPlayCameraNonAnimation{characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",0),isFollowPos=true,isFollowRot=true,followTime=3,followDelayTime=.1,candidateRots={{8,25},{8,-25}},offsetTarget=e,offsetPos=Vector3(0,0,-10),focalLength=35,aperture=1.875,timeToSleep=20,interpTimeAtStart=.5,fitOnCamera=false,timeToStartToFitCamera=1,fitCameraInterpTime=.3,diffFocalLengthToReFitCamera=16}
 end
-function this.PlayMissionAbortCameraOnWalkerGear(vehicleId)
-  Player.RequestToPlayCameraNonAnimation{
-    characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",0),
-    isFollowPos=true,
-    isFollowRot=true,
-    followTime=3,
-    followDelayTime=.1,
-    candidateRots={{7,15},{7,-15}},
-    offsetTarget=Vector3(0,.8,0),
-    offsetPos=Vector3(0,.5,-3.5),
-    focalLength=35,
-    aperture=1.875,
-    timeToSleep=20,
-    interpTimeAtStart=.5,
-    fitOnCamera=false,
-    timeToStartToFitCamera=1,
-    fitCameraInterpTime=.3,
-    diffFocalLengthToReFitCamera=16}
+function this.PlayMissionAbortCameraOnWalkerGear(a)
+  Player.RequestToPlayCameraNonAnimation{characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",0),isFollowPos=true,isFollowRot=true,followTime=3,followDelayTime=.1,candidateRots={{7,15},{7,-15}},offsetTarget=Vector3(0,.8,0),offsetPos=Vector3(0,.5,-3.5),focalLength=35,aperture=1.875,timeToSleep=20,interpTimeAtStart=.5,fitOnCamera=false,timeToStartToFitCamera=1,fitCameraInterpTime=.3,diffFocalLengthToReFitCamera=16}
 end
 this.VEHICLE_MISSION_ABORT_CAMERA={
   [Vehicle.type.EASTERN_LIGHT_VEHICLE]=this.PlayMissionAbortCameraOnRideLightVehicle,
@@ -1863,150 +1537,59 @@ this.VEHICLE_MISSION_ABORT_CAMERA={
   [Vehicle.type.WESTERN_TRACKED_TANK]=this.PlayMissionAbortCameraOnRideTank,
   [Vehicle.type.WESTERN_TRUCK]=this.PlayMissionAbortCameraOnRideTruck,
   [Vehicle.type.WESTERN_WHEELED_ARMORED_VEHICLE]=this.PlayMissionAbortCameraOnRideWesternArmoredVehicle}
-function this.PlayFallDeadCamera(param)
+function this.PlayFallDeadCamera(a)
   mvars.ply_fallDeadCameraTimeToSleep=20
-  if param and Tpp.IsTypeNumber(param.timeToSleep)then
-    mvars.ply_fallDeadCameraTimeToSleep=param.timeToSleep
+  if a and Tpp.IsTypeNumber(a.timeToSleep)then
+    mvars.ply_fallDeadCameraTimeToSleep=a.timeToSleep
   end
   mvars.ply_fallDeadCameraTargetPlayerIndex=PlayerInfo.GetLocalPlayerIndex()
   HighSpeedCamera.RequestEvent{continueTime=.03,worldTimeRate=.1,localPlayerTimeRate=.1}
   this.PlayCommonMissionEndCamera(this.PlayFallDeadCameraOnRideHorse,this.VEHICLE_FALL_DEAD_CAMERA,this.PlayFallDeadCameraOnWalkerGear,this.PlayFallDeadCameraOnFoot)
 end
-function this.SetLimitFallDeadCameraOffsetPosY(posYLimit)
-  mvars.ply_fallDeadCameraPosYLimit=posYLimit
+function this.SetLimitFallDeadCameraOffsetPosY(e)
+  mvars.ply_fallDeadCameraPosYLimit=e
 end
 function this.ResetLimitFallDeadCameraOffsetPosY()
   mvars.ply_fallDeadCameraPosYLimit=nil
 end
 function this.GetFallDeadCameraOffsetPosY()
-  local playerPosY=vars.playerPosY
-  local offsetPosY=.5
+  local a=vars.playerPosY
+  local e=.5
   if mvars.ply_fallDeadCameraPosYLimit then
-    local minAdjust=playerPosY+offsetPosY
-    if minAdjust<mvars.ply_fallDeadCameraPosYLimit then
-      offsetPosY=mvars.ply_fallDeadCameraPosYLimit-playerPosY
+    local t=a+e
+    if t<mvars.ply_fallDeadCameraPosYLimit then
+      e=mvars.ply_fallDeadCameraPosYLimit-a
     end
   end
-  return offsetPosY
+  return e
 end
 function this.PlayFallDeadCameraOnFoot()
-  local offsetPosY=this.GetFallDeadCameraOffsetPosY()
-  Player.RequestToPlayCameraNonAnimation{
-    characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",mvars.ply_fallDeadCameraTargetPlayerIndex),
-    isFollowPos=false,
-    isFollowRot=true,
-    followTime=.8,
-    followDelayTime=0,
-    candidateRots={{-60,-25},{-60,25},{-60,-115},{-60,115},{5,-25},{5,25},{5,-115},{5,115}},
-    offsetTarget=Vector3(0,0,0),
-    offsetPos=Vector3(-2.5,(offsetPosY+1),-2.5),
-    focalLength=21,
-    aperture=1.875,
-    timeToSleep=mvars.ply_fallDeadCameraTimeToSleep,
-    interpTimeAtStart=0,
-    fitOnCamera=false}
+  local e=this.GetFallDeadCameraOffsetPosY()
+  Player.RequestToPlayCameraNonAnimation{characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",mvars.ply_fallDeadCameraTargetPlayerIndex),isFollowPos=false,isFollowRot=true,followTime=.8,followDelayTime=0,candidateRots={{-60,-25},{-60,25},{-60,-115},{-60,115},{5,-25},{5,25},{5,-115},{5,115}},offsetTarget=Vector3(0,0,0),offsetPos=Vector3(-2.5,(e+1),-2.5),focalLength=21,aperture=1.875,timeToSleep=mvars.ply_fallDeadCameraTimeToSleep,interpTimeAtStart=0,fitOnCamera=false}
 end
 function this.PlayFallDeadCameraOnRideHorse(a)
-  local offsetPosY=this.GetFallDeadCameraOffsetPosY()
-  Player.RequestToPlayCameraNonAnimation{
-    characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",mvars.ply_fallDeadCameraTargetPlayerIndex),
-    isFollowPos=false,
-    isFollowRot=true,
-    followTime=.8,
-    followDelayTime=0,
-    candidateRots={{-60,-25},{-60,25},{-60,-115},{-60,115},{5,-25},{5,25},{5,-115},{5,115}},
-    offsetTarget=Vector3(0,0,0),
-    offsetPos=Vector3(-2.5,(offsetPosY+1),-2.5),
-    focalLength=21,
-    aperture=1.875,
-    timeToSleep=mvars.ply_fallDeadCameraTimeToSleep,
-    interpTimeAtStart=0,
-    fitOnCamera=false}
+  local e=this.GetFallDeadCameraOffsetPosY()
+  Player.RequestToPlayCameraNonAnimation{characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",mvars.ply_fallDeadCameraTargetPlayerIndex),isFollowPos=false,isFollowRot=true,followTime=.8,followDelayTime=0,candidateRots={{-60,-25},{-60,25},{-60,-115},{-60,115},{5,-25},{5,25},{5,-115},{5,115}},offsetTarget=Vector3(0,0,0),offsetPos=Vector3(-2.5,(e+1),-2.5),focalLength=21,aperture=1.875,timeToSleep=mvars.ply_fallDeadCameraTimeToSleep,interpTimeAtStart=0,fitOnCamera=false}
 end
 function this.PlayFallDeadCameraOnRideLightVehicle(a)
-  local offsetPosY=this.GetFallDeadCameraOffsetPosY()
-  Player.RequestToPlayCameraNonAnimation{
-    characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",mvars.ply_fallDeadCameraTargetPlayerIndex),
-    isFollowPos=false,
-    isFollowRot=true,
-    followTime=.8,
-    followDelayTime=0,
-    candidateRots={{-60,-25},{-60,25},{-60,-115},{-60,115},{5,-25},{5,25},{5,-115},{5,115}},
-    offsetTarget=Vector3(0,0,0),
-    offsetPos=Vector3(-4,(offsetPosY+1),-8),
-    focalLength=21,
-    aperture=1.875,
-    timeToSleep=mvars.ply_fallDeadCameraTimeToSleep,
-    interpTimeAtStart=0,
-    fitOnCamera=false}
+  local e=this.GetFallDeadCameraOffsetPosY()
+  Player.RequestToPlayCameraNonAnimation{characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",mvars.ply_fallDeadCameraTargetPlayerIndex),isFollowPos=false,isFollowRot=true,followTime=.8,followDelayTime=0,candidateRots={{-60,-25},{-60,25},{-60,-115},{-60,115},{5,-25},{5,25},{5,-115},{5,115}},offsetTarget=Vector3(0,0,0),offsetPos=Vector3(-4,(e+1),-8),focalLength=21,aperture=1.875,timeToSleep=mvars.ply_fallDeadCameraTimeToSleep,interpTimeAtStart=0,fitOnCamera=false}
 end
 function this.PlayFallDeadCameraOnRideTruck(a)
-  local offsetPosY=this.GetFallDeadCameraOffsetPosY()
-  Player.RequestToPlayCameraNonAnimation{
-    characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",mvars.ply_fallDeadCameraTargetPlayerIndex),
-    isFollowPos=false,
-    isFollowRot=true,
-    followTime=.8,
-    followDelayTime=0,
-    candidateRots={{-60,-25},{-60,25},{-60,-115},{-60,115},{5,-25},{5,25},{5,-115},{5,115}},
-    offsetTarget=Vector3(0,0,0),
-    offsetPos=Vector3(-4,(offsetPosY+1),-8),
-    focalLength=21,
-    aperture=1.875,
-    timeToSleep=mvars.ply_fallDeadCameraTimeToSleep,
-    interpTimeAtStart=0,
-    fitOnCamera=false}
+  local e=this.GetFallDeadCameraOffsetPosY()
+  Player.RequestToPlayCameraNonAnimation{characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",mvars.ply_fallDeadCameraTargetPlayerIndex),isFollowPos=false,isFollowRot=true,followTime=.8,followDelayTime=0,candidateRots={{-60,-25},{-60,25},{-60,-115},{-60,115},{5,-25},{5,25},{5,-115},{5,115}},offsetTarget=Vector3(0,0,0),offsetPos=Vector3(-4,(e+1),-8),focalLength=21,aperture=1.875,timeToSleep=mvars.ply_fallDeadCameraTimeToSleep,interpTimeAtStart=0,fitOnCamera=false}
 end
 function this.PlayFallDeadCameraOnRideArmoredVehicle(a)
-  local offsetPosY=this.GetFallDeadCameraOffsetPosY()
-  Player.RequestToPlayCameraNonAnimation{
-    characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",mvars.ply_fallDeadCameraTargetPlayerIndex),
-    isFollowPos=false,
-    isFollowRot=true,
-    followTime=.8,
-    followDelayTime=0,
-    candidateRots={{-60,-25},{-60,25},{-60,-115},{-60,115},{5,-25},{5,25},{5,-115},{5,115}},
-    offsetTarget=Vector3(0,0,0),
-    offsetPos=Vector3(-4,(offsetPosY+1),-8),
-    focalLength=21,
-    aperture=1.875,
-    timeToSleep=mvars.ply_fallDeadCameraTimeToSleep,
-    interpTimeAtStart=0,
-    fitOnCamera=false}
+  local e=this.GetFallDeadCameraOffsetPosY()
+  Player.RequestToPlayCameraNonAnimation{characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",mvars.ply_fallDeadCameraTargetPlayerIndex),isFollowPos=false,isFollowRot=true,followTime=.8,followDelayTime=0,candidateRots={{-60,-25},{-60,25},{-60,-115},{-60,115},{5,-25},{5,25},{5,-115},{5,115}},offsetTarget=Vector3(0,0,0),offsetPos=Vector3(-4,(e+1),-8),focalLength=21,aperture=1.875,timeToSleep=mvars.ply_fallDeadCameraTimeToSleep,interpTimeAtStart=0,fitOnCamera=false}
 end
 function this.PlayFallDeadCameraOnRideTank(a)
-  local offsetPosY=this.GetFallDeadCameraOffsetPosY()
-  Player.RequestToPlayCameraNonAnimation{
-    characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",mvars.ply_fallDeadCameraTargetPlayerIndex),
-    isFollowPos=false,
-    isFollowRot=true,
-    followTime=.8,
-    followDelayTime=0,
-    candidateRots={{-60,-25},{-60,25},{-60,-115},{-60,115},{5,-25},{5,25},{5,-115},{5,115}},
-    offsetTarget=Vector3(0,0,0),
-    offsetPos=Vector3(-4,(offsetPosY+1),-8),
-    focalLength=21,
-    aperture=1.875,
-    timeToSleep=mvars.ply_fallDeadCameraTimeToSleep,
-    interpTimeAtStart=0,
-    fitOnCamera=false}
+  local e=this.GetFallDeadCameraOffsetPosY()
+  Player.RequestToPlayCameraNonAnimation{characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",mvars.ply_fallDeadCameraTargetPlayerIndex),isFollowPos=false,isFollowRot=true,followTime=.8,followDelayTime=0,candidateRots={{-60,-25},{-60,25},{-60,-115},{-60,115},{5,-25},{5,25},{5,-115},{5,115}},offsetTarget=Vector3(0,0,0),offsetPos=Vector3(-4,(e+1),-8),focalLength=21,aperture=1.875,timeToSleep=mvars.ply_fallDeadCameraTimeToSleep,interpTimeAtStart=0,fitOnCamera=false}
 end
 function this.PlayFallDeadCameraOnWalkerGear(a)
-  local offsetPosY=this.GetFallDeadCameraOffsetPosY()
-  Player.RequestToPlayCameraNonAnimation{
-    characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",mvars.ply_fallDeadCameraTargetPlayerIndex),
-    isFollowPos=false,
-    isFollowRot=true,
-    followTime=.8,
-    followDelayTime=0,
-    candidateRots={{-60,-25},{-60,25},{-60,-115},{-60,115},{5,-25},{5,25},{5,-115},{5,115}},
-    offsetTarget=Vector3(0,0,0),
-    offsetPos=Vector3(-4,(offsetPosY+1),-8),
-    focalLength=21,
-    aperture=1.875,
-    timeToSleep=mvars.ply_fallDeadCameraTimeToSleep,
-    interpTimeAtStart=0,
-    fitOnCamera=false}
+  local a=this.GetFallDeadCameraOffsetPosY()
+  Player.RequestToPlayCameraNonAnimation{characterId=GameObject.GetGameObjectIdByIndex("TppPlayer2",mvars.ply_fallDeadCameraTargetPlayerIndex),isFollowPos=false,isFollowRot=true,followTime=.8,followDelayTime=0,candidateRots={{-60,-25},{-60,25},{-60,-115},{-60,115},{5,-25},{5,25},{5,-115},{5,115}},offsetTarget=Vector3(0,0,0),offsetPos=Vector3(-4,(a+1),-8),focalLength=21,aperture=1.875,timeToSleep=mvars.ply_fallDeadCameraTimeToSleep,interpTimeAtStart=0,fitOnCamera=false}
 end
 this.VEHICLE_FALL_DEAD_CAMERA={[Vehicle.type.EASTERN_LIGHT_VEHICLE]=this.PlayFallDeadCameraOnRideLightVehicle,
   [Vehicle.type.EASTERN_TRACKED_TANK]=this.PlayFallDeadCameraOnRideTank,
@@ -2469,19 +2052,7 @@ function this.OnPlayerFulton(playerIndex,gameId)
 end
 function this.QuietRideHeli(gameId)
   if gameId==GameObject.GetGameObjectIdByIndex("TppBuddyQuiet2",0)then
-    Player.RequestToPlayCameraNonAnimation{
-      characterId=gameId,
-      isFollowPos=false,
-      isFollowRot=false,
-      followTime=1,
-      followDelayTime=.1,
-      candidateRots={{-4,45},{-4,-45},{-8,0}},
-      offsetPos=Vector3(0,-.2,-2.5),
-      offsetTarget=Vector3(0,2,0),
-      focalLength=21,
-      aperture=1.875,
-      timeToSleep=2,
-      enableOverride=true}
+    Player.RequestToPlayCameraNonAnimation{characterId=gameId,isFollowPos=false,isFollowRot=false,followTime=1,followDelayTime=.1,candidateRots={{-4,45},{-4,-45},{-8,0}},offsetPos=Vector3(0,-.2,-2.5),offsetTarget=Vector3(0,2,0),focalLength=21,aperture=1.875,timeToSleep=2,enableOverride=true}
   end
 end
 function this.SetRetryFlag()
@@ -3033,11 +2604,6 @@ end
 --RETAILPATCH 1.0.11>
 function this.IsCurrentPlayerOcelot()
   return vars.playerType==PlayerType.OCELOT
-end
---<
---RETAILPATCH 1.0.13>
-function this.IsCurrentPlayerQuiet()
-  return vars.playerType==PlayerType.QUIET
 end
 --<
 return this
